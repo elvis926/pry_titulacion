@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comentario extends Model
 {
+    protected $fillable = ['text','user_id'];
     use HasFactory;
 }
