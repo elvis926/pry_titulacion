@@ -14,7 +14,13 @@ class CreateSolicitudsTable extends Migration
     public function up()
     {
         Schema::create('solicituds', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('descripcionPC');
+            $table->date('fechaIni');
+            $table->date('fechaFin');
+            $table->enum('dano',['Pantalla Azul','Lentiutud','No enciende','Pitidos']);
+            $table->text('descripcion');
+
             $table->timestamps();
         });
     }

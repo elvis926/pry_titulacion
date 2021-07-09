@@ -14,7 +14,8 @@ class CreatePostulacionsTable extends Migration
     public function up()
     {
         Schema::create('postulacions', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->enum('estado',['Espera','Asignado','Terminado']);
             $table->timestamps();
         });
     }

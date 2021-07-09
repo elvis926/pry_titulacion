@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Postulacion extends Model
+class Tecnico extends Model
 {
-    protected $fillable = ['estado'];
     use HasFactory;
 }
