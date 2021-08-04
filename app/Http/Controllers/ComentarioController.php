@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comentario;
+use App\Http\Resources\Comments as CommentResource;
+use App\Http\Resources\CommentCollection;
 use Illuminate\Http\Request;
 
 class ComentarioController extends Controller
@@ -9,36 +12,36 @@ class ComentarioController extends Controller
     public function index()
     {
         //$this->authorize('viewAny', Comment::class);
-        return new CommentCollection(Comment::paginate(3));
+        return new CommentCollection(Comentario::paginate(3));
     }
-    public function show(Comment $comment)
+    public function show(Comentario $comentario)
     {
-        $this->authorize('view', $comment);
-        return response()->json(new CommentResource($comment),200);
+        $this->authorize('view', $comentario);
+        return response()->json(new CommentResource($comentario),200);
     }
     public function store(Request $request)
     {
-        $this->authorize('create', Comment::class);
+        //$this->authorize('create', Comentario::class);
         $request->validate([
             'text'=>'required|string'
         ]);
 
-        $comment = Comment::create($request->all());
+        $comment = Comentario::create($request->all());
         return response()->json($comment, 201);
     }
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, Comentario $comentario)
     {
-        $this->authorize('update',$comment);
+        $this->authorize('update',$comentario);
         $request->validate([
             'text'=>'required|string'
         ]);
-        $comment->update($request->all());
-        return response()->json($comment, 200);
+        $comentario->update($request->all());
+        return response()->json($comentario, 200);
     }
-    public function delete(Request $request, Comment $comment)
+    public function delete(Request $request, Comentario $comentario)
     {
-        $this->authorize('delete',$comment);
-        $comment->delete();
+        $this->authorize('delete',$comentario);
+        $comentario->delete();
         return response()->json(null, 204);
     }
 }

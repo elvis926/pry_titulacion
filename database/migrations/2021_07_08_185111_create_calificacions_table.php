@@ -14,7 +14,8 @@ class CreateCalificacionsTable extends Migration
     public function up()
     {
         Schema::create('calificacions', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->enum('calificacion',['1','2','3','4','5']);
             $table->timestamps();
         });
     }
