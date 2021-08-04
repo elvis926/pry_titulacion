@@ -29,12 +29,19 @@ class UsersTableSeeder extends Seeder
             //'rol_type' => 'Admin',
             'role'=> User::ROLE_ADMIN,
         ]);
+        User::create([
+            'name' => 'Administrador Tecnico',
+            'email' => 'admint@prueba.com',
+            'password' => $password,
+            //'rol_type' => 'Admin',
+            'role'=> User::ROLE_ADMINTECNICO,
+        ]);
         // Generar algunos usuarios
        // $rol=['teacher','student'];
-        $role=['ROLE_ADMINTECNICO','ROLE_CLIENTE','ROLE_TECNICO'];
+        $role=['ROLE_CLIENTE'];
         for ($i = 0; $i < 30; $i++) {
             $user=User::create([
-                'name' => $faker->firstName,
+                'name' => $faker->name,
                 'email' => $faker->email,
                 'password' => $password,
                 'role'=> $faker->randomElement($role),

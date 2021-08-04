@@ -4,21 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SolicitudController extends Controller
+class CalificacionController extends Controller
 {
     public function index()
     {
         //$this->authorize('viewAny', Comment::class);
-        return new CommentCollection(Comentario::paginate(3));
+        return new CommentCollection(Comment::paginate(3));
     }
     public function show(Comment $comment)
     {
         $this->authorize('view', $comment);
-        return response()->json(new CommentResource($comment),200);
+        return Comment::all();
     }
     public function store(Request $request)
     {
-        $this->authorize('create', Comentario::class);
+        $this->authorize('create', Comment::class);
         $request->validate([
             'text'=>'required|string'
         ]);

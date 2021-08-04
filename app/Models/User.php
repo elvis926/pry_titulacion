@@ -26,7 +26,6 @@ class User extends Authenticatable
     const ROLE_ADMIN = 'ROLE_ADMIN';
     const ROLE_ADMINTECNICO = 'ROLE_ADMINTECNICO';
     const ROLE_CLIENTE = 'ROLE_CLIENTE';
-    const ROLE_TECNICO = 'ROLE_TECNICO';
 
     /**
      * The attributes that should be hidden for arrays.
