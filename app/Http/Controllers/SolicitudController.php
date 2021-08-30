@@ -2,43 +2,57 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Solicitud;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\Solicituds as SolicitudResource;
+use App\Http\Resources\SolicitudCollection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SolicitudController extends Controller
 {
     public function index()
     {
         //$this->authorize('viewAny', Comment::class);
-        return new CommentCollection(Comentario::paginate(3));
+        return new SolicitudsCollection(Solicitud::paginate(10));
     }
-    public function show(Comment $comment)
+    public function show(Solicitud $solicitud)
     {
-        $this->authorize('view', $comment);
-        return response()->json(new CommentResource($comment),200);
+        $this->authorize('view', $solicitud);
+        return response()->json(new SolicitudResource($solicitud),200);
     }
     public function store(Request $request)
     {
-        $this->authorize('create', Comentario::class);
+       // $this->authorize('create', Solicitud::class);
         $request->validate([
-            'text'=>'required|string'
+            'descripcionPC'=>'required|string',
+            'fechaIni'=>'required|date',
+            'fechaFin'=>'required|date',
+            'dano'=>'required|string',
+            'descripcion'=>'required|string'
         ]);
 
-        $comment = Comment::create($request->all());
-        return response()->json($comment, 201);
+        $solicitud = Solicitud::create($request->all());
+        return response()->json($solicitud, 201);
     }
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, Solicitud $solicitud)
     {
-        $this->authorize('update',$comment);
+        $this->authorize('update',$solicitud);
         $request->validate([
-            'text'=>'required|string'
+            'descripcionPC'=>'required|string',
+            'fechaIni'=>'required|date',
+            'fechaFin'=>'required|date',
+            'dano'=>'required|string',
+            'descripcion'=>'required|string'
         ]);
-        $comment->update($request->all());
-        return response()->json($comment, 200);
+        $solicitud->update($request->all());
+        return response()->json($solicitud, 200);
     }
-    public function delete(Request $request, Comment $comment)
+    public function delete(Request $request, Solicitud $solicitud)
     {
-        $this->authorize('delete',$comment);
-        $comment->delete();
+        $this->authorize('delete',$solicitud);
+        $solicitud->delete();
         return response()->json(null, 204);
     }
 }

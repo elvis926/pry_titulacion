@@ -3,42 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Calificacion;
 
 class CalificacionController extends Controller
 {
     public function index()
     {
-        //$this->authorize('viewAny', Comment::class);
-        return new CommentCollection(Comment::paginate(3));
+        return new CalificacionCollection(Calificacion::paginate(3));
     }
-    public function show(Comment $comment)
+    public function show(Calificacion $calificacion)
     {
-        $this->authorize('view', $comment);
-        return Comment::all();
+        $this->authorize('view', $calificacion);
+        return response()->json(new CalificacionResource($calificacion),200);
     }
     public function store(Request $request)
     {
-        $this->authorize('create', Comment::class);
         $request->validate([
-            'text'=>'required|string'
+            'calificacion'=>'required|string'
         ]);
 
-        $comment = Comment::create($request->all());
-        return response()->json($comment, 201);
+        $calificacion = Calificacion::create($request->all());
+        return response()->json($calificacion, 201);
     }
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, Calificacion $calificacion)
     {
-        $this->authorize('update',$comment);
+        $this->authorize('update',$calificacion);
         $request->validate([
             'text'=>'required|string'
         ]);
-        $comment->update($request->all());
-        return response()->json($comment, 200);
+        $calificacion->update($request->all());
+        return response()->json($calificacion, 200);
     }
-    public function delete(Request $request, Comment $comment)
+    public function delete(Request $request, Calificacion $calificacion)
     {
-        $this->authorize('delete',$comment);
-        $comment->delete();
+        $this->authorize('delete',$calificacion);
+        $calificacion->delete();
         return response()->json(null, 204);
     }
 }

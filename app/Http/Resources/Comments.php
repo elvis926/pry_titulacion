@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Resources;
-
+use App\Models\User;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class Comments extends ResourceCollection
@@ -16,9 +16,11 @@ class Comments extends ResourceCollection
     {
         return [
             'id' => $this->id,
-            'text' => $this->content,
+            'text' => $this->text,
+            'user'=> '/api/users/' . $this->user_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            
         ];
     }
 }

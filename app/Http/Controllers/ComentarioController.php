@@ -3,16 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comentario;
-use App\Http\Resources\Comments as CommentResource;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\Comment as CommentResource;
 use App\Http\Resources\CommentCollection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class ComentarioController extends Controller
 {
+    private static $rules=[
+        'text' => 'required|string|max:2000',
+    ];
+
+    private static $messages=[
+        'text.required' => 'Falta el contenido del mensaje',
+    ];
+
     public function index()
     {
-        //$this->authorize('viewAny', Comment::class);
-        return new CommentCollection(Comentario::paginate(3));
+        return new CommentCollection(Comentario::paginate(5));
     }
     public function show(Comentario $comentario)
     {
@@ -21,17 +32,13 @@ class ComentarioController extends Controller
     }
     public function store(Request $request)
     {
-        //$this->authorize('create', Comentario::class);
-        $request->validate([
-            'text'=>'required|string'
-        ]);
-
-        $comment = Comentario::create($request->all());
-        return response()->json($comment, 201);
+        $request -> validate(self::$rules, self::$messages);
+        $comentario = Comentario::create($request->all());
+        return response()->json($comentario, 201);
     }
     public function update(Request $request, Comentario $comentario)
     {
-        $this->authorize('update',$comentario);
+        //$this->authorize('update',$comentario);
         $request->validate([
             'text'=>'required|string'
         ]);

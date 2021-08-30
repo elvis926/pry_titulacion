@@ -14,6 +14,17 @@ class Solicituds extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'descripcionPC' => $this->descripcionPC,
+            'fechaIni' => $this->fechaIni,
+            'fechaFin' => $this->fechaFn,
+            'dano' => $this->dano,
+            'descripcion' => $this->descripcion,
+            'cliente' => '/api/users/' . $this->cliente_id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
+        
     }
 }
