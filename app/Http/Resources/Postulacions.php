@@ -17,9 +17,9 @@ class Postulacions extends ResourceCollection
     {
         return  [
             'id' => $this->id,
-            'estado' => $this->content,
+            'estado' => $this->estado,
             'tecnico_id' => '/api/users/' . $this->tecnico_id,
-            'soliciud_id' => '/api/solicituds/' . $this->solicitud_id,
+            'solicitud_id' => '/api/solicituds/' . $this->solicitud_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
