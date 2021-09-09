@@ -25,11 +25,9 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
     //rutas usuario
     Route::get('user', 'App\Http\Controllers\UserController@getAuthenticatedUser');
-    Route::get('users', 'App\Http\Controllers\UserController@authenticate');
-    Route::get('user', 'App\Http\Controllers\UserController@authenticate');
-    Route::get('users/{user}', 'App\Http\Controllers\UserController@authenticate');
-    Route::put('users/{user}', 'App\Http\Controllers\UserController@authenticate');
-    Route::delete('users/{user}', 'App\Http\Controllers\UserController@authenticate');
+    Route::get('users/{user}', 'App\Http\Controllers\UserController@');
+    Route::put('users/{user}', 'App\Http\Controllers\UserController@');
+    Route::delete('users/{user}', 'App\Http\Controllers\UserController@');
     //Rutas comentarios
     Route::get('comments/{comment}', 'App\Http\Controllers\ComentarioController@show');
     Route::post('comments', 'App\Http\Controllers\ComentarioController@store');
@@ -48,7 +46,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::put('solicitudes/{solicitud}', 'App\Http\Controllers\SolicitudController@update');
     Route::delete('solicitudes/{solicitud}', 'App\Http\Controllers\SolicitudController@delete');
     //Rutas Calificacion
-    Route::get('calificaciones', 'App\Http\Controllers\SolicitudController@index');
+  //  Route::get('calificaciones', 'App\Http\Controllers\SolicitudController@index');
     Route::get('calificaciones/{calificacion}', 'App\Http\Controllers\SolicitudController@show');
     Route::post('calificaciones', 'App\Http\Controllers\SolicitudController@store');
     Route::put('calificaciones/{calificacion}', 'App\Http\Controllers\SolicitudController@update');
