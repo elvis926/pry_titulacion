@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tecnico extends Model
 {
-    protected $fillable = ['nombre','email','password','telefono'];
+    protected $fillable = ['nombre','email','telefono','descripcion','estudios'];
     use HasFactory;
 }
