@@ -27,8 +27,9 @@ class UserController extends Controller
         //$this->authorize('create', Comentario::class);
         $request->validate([
             'nombre'=>'required|string',
-            'email'=>'required|date',
-            'telefono'=>'required|date',
+            'email'=>'required|string',
+            'telefono'=>'required|string',
+            'direccion'=>'required|string',
             'descripcion'=>'required|string',
             'estudios'=>'required|string'
         ]);
@@ -40,8 +41,9 @@ class UserController extends Controller
         $this->authorize('update',$tecnico);
         $request->validate([
             'nombre'=>'required|string',
-            'email'=>'required|date',
-            'telefono'=>'required|date',
+            'email'=>'required|string',
+            'telefono'=>'required|string',
+            'direccion'=>'required|string',
             'descripcion'=>'required|string',
             'estudios'=>'required|string'
         ]);

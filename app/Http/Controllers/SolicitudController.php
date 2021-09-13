@@ -25,10 +25,9 @@ class SolicitudController extends Controller
        // $this->authorize('create', Solicitud::class);
         $request->validate([
             'descripcionPC'=>'required|string',
-            'fechaIni'=>'required|date',
-            'fechaFin'=>'required|date',
             'dano'=>'required|string',
-            'descripcion'=>'required|string'
+            'descripcion'=>'required|string',
+            'estado'=> 'required|string'
         ]);
 
         $solicitud = Solicitud::create($request->all());
