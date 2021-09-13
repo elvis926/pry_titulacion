@@ -19,11 +19,7 @@ use Illuminate\Support\Str;
 Route::post('register', 'App\Http\Controllers\UserController@register');
 Route::post('login', 'App\Http\Controllers\UserController@authenticate');
 Route::get('comments', 'App\Http\Controllers\ComentarioController@index');
-
-
-Route::group(['middleware' => ['jwt.verify']], function() {
-
-    //rutas usuario
+//rutas usuario
     Route::get('user', 'App\Http\Controllers\UserController@getAuthenticatedUser');
     Route::get('users/{user}', 'App\Http\Controllers\UserController@');
     Route::put('users/{user}', 'App\Http\Controllers\UserController@');
@@ -51,5 +47,10 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::post('calificaciones', 'App\Http\Controllers\SolicitudController@store');
     Route::put('calificaciones/{calificacion}', 'App\Http\Controllers\SolicitudController@update');
     Route::delete('calificaciones/{calificacion}', 'App\Http\Controllers\SolicitudController@delete');
+
+
+Route::group(['middleware' => ['jwt.verify']], function() {
+
+    
 
 });
