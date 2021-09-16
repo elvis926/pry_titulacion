@@ -2,6 +2,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Solicitud;
+use App\Http\Resources\Solicituds as SolicitudResource;
+use App\Http\Resources\SolicitudCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -106,5 +109,11 @@ class UserController extends Controller
             // something went wrong whilst attempting to encode the token
             return response()->json(["message" => "No se pudo cerrar la sesión."], 500);
         }
+    }
+
+    public function showUserSolicitud(User $user){
+        //$this->authorize('viewUserPublications', User::class);
+        $solicitudes = Solicitud::where('cliente_id', $user['id'])->get();
+        return response()->json(new SolicitudCollection($solicitudes), 200);
     }
 }
