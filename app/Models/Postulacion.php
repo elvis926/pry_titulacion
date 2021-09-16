@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Postulacion extends Model
 {
-    protected $fillable = ['estado','tecnico_id'];
+    protected $fillable = ['estado','solicitud_id'];
 
     public static function boot()
     {

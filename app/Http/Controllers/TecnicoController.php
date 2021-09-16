@@ -10,7 +10,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Resources\Tecnicos as TecnicoResource;
 
-class UserController extends Controller
+class TecnicoController extends Controller
 {
     public function index(Tecnico $tecnico)
     {
@@ -26,9 +26,13 @@ class UserController extends Controller
     {
         //$this->authorize('create', Comentario::class);
         $request->validate([
-            'text'=>'required|string'
+            'name'=>'required|string',
+            'email'=>'required|string',
+            'telefono'=>'required|string',
+            'direccion'=>'required|string',
+            'descripcion'=>'required|string',
+            'estudios'=>'required|string'
         ]);
-
         $tecnico = Tecnico::create($request->all());
         return response()->json($tecnico, 201);
     }
@@ -36,7 +40,12 @@ class UserController extends Controller
     {
         $this->authorize('update',$tecnico);
         $request->validate([
-            'text'=>'required|string'
+            'nombre'=>'required|string',
+            'email'=>'required|string',
+            'telefono'=>'required|string',
+            'direccion'=>'required|string',
+            'descripcion'=>'required|string',
+            'estudios'=>'required|string'
         ]);
         $tecnico->update($request->all());
         return response()->json($tecnico, 200);

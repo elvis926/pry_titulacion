@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Postulacion;
 use App\Models\User;
 use App\Models\Solicitud;
-use App\Http\Resources\Postulacions as PostulacionResource;
+use App\Http\Resources\Postulacion as PostulacionResource;
 use App\Http\Resources\PostulacionCollection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class PostulacionController extends Controller
 {
@@ -18,14 +20,14 @@ class PostulacionController extends Controller
     }
     public function show(Postulacion $postulacion)
     {
-       // $this->authorize('view', $postulacion);
-        return response()->json(new PostulacionsResource($postulacion),200);
+       
+        return response()->json(new PostulacionResource($postulacion),200);
     }
     public function store(Request $request)
     {
-       // $this->authorize('create', Postulacion::class);
         $request->validate([
-            'estado'=>'required|string'
+            'estado'=>'required|string',
+            'solicitud_id'=>'required|exists:solicituds,id'
             
         ]);
 
@@ -36,11 +38,10 @@ class PostulacionController extends Controller
     {
        // $this->authorize('update',$postulacion);
         $request->validate([
-            'estado'=>'required|string',
-            
+            'estado'=>'required|string',            
         ]);
         $postulacion->update($request->all());
-        return response()->json($comment, 200);
+        return response()->json($postulacion, 200);
     }
     public function delete(Request $request, Postulacion $postulacion)
     {
