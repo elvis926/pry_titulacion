@@ -19,24 +19,17 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
         try {
             if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 400);
+                return response()->json(['status' => 'invalid_credentials']);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            return response()->json(['status' => 'could_not_create_token']);
         }
         $user = JWTAuth::user();
-        return response()->json(compact('token','user'))
-            ->withCookie(
-              'token',
-              $token,
-              config('jwt.ttl'), // ttl => time to live
-              '/', // path
-              null, // domain
-              config('app.env') !== 'local', // secure
-              true, // httpOnly
-              false,
-              config('app.env') !== 'local' ? 'None' : 'Lax' // SameSite
-            );
+        if ($user){
+        return response()->json(["status" =>'Ok', "api_token" => $user]);
+    }else{
+        return response()->json(["status" =>'Error']);
+    }
     }
     public function register(Request $request)
     {
