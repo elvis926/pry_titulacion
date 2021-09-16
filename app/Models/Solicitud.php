@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Solicitud extends Model
 {
-    protected $fillable = ['descripcionPC','fechaIni','fechaFin','dano','descripcion','estado'];
+    protected $fillable = ['descripcionPC','dano','descripcion','estado'];
     
     public static function boot()
     {
