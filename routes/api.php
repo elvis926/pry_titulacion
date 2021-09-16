@@ -27,9 +27,22 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     //rutas para filtrar las solicitudes por usuario
     Route::get('/users/solicitudes/{user}','App\Http\Controllers\UserController@showUserSolicitud');
 
+    //filtrar postulaciones por user  showUserComments
+    Route::get('/users/postulaciones/{user}','App\Http\Controllers\UserController@showUserPostulacion');
+
+    //filtrar postulaciones por user  
+    Route::get('/users/comments/{user}','App\Http\Controllers\UserController@showUserComments');
+
+    //filtrar postulaciones x solicitud_id
+    Route::get('/solicitudes/postulaciones/{solicitud}','App\Http\Controllers\SolicitudController@showPostulacionSolicitud');
+
+    //filtrar user por rol
+    Route::get('user-tecnico', 'App\Http\Controllers\UserController@showRoleTecnic');
+    Route::get('user-cliente', 'App\Http\Controllers\UserController@showRoleClient');
+
     //rutas usuario
     Route::get('user', 'App\Http\Controllers\UserController@getAuthenticatedUser');
-    Route::get('users/{user}', 'App\Http\Controllers\UserController@');
+    Route::get('users/{user}', 'App\Http\Controllers\UserController@show');
     Route::put('users/{user}', 'App\Http\Controllers\UserController@');
     Route::delete('users/{user}', 'App\Http\Controllers\UserController@');
     Route::post('logout', 'App\Http\Controllers\UserController@logout');
@@ -48,6 +61,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     //Rutas Solicitudes
     Route::get('solicitudes', 'App\Http\Controllers\SolicitudController@index');
     Route::get('solicitudes/{solicitud}', 'App\Http\Controllers\SolicitudController@show');
+    Route::get('solicitud-sin-asignar', 'App\Http\Controllers\SolicitudController@showSinAsignar');
     Route::post('solicitudes', 'App\Http\Controllers\SolicitudController@store');
     Route::put('solicitudes/{solicitud}', 'App\Http\Controllers\SolicitudController@update');
     Route::delete('solicitudes/{solicitud}', 'App\Http\Controllers\SolicitudController@delete');

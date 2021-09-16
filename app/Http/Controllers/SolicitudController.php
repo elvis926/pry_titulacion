@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Solicitud;
 use App\Models\User;
+use App\Models\Postulacion;
 use App\Http\Resources\Solicituds as SolicitudResource;
+use App\Http\Resources\Postulacion as PostulacionResource;
+use App\Http\Resources\PostulacionCollection;
 use App\Http\Resources\SolicitudCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -51,5 +54,17 @@ class SolicitudController extends Controller
         $this->authorize('delete',$solicitud);
         $solicitud->delete();
         return response()->json(null, 204);
+    }
+
+    public function showPostulacionSolicitud(Solicitud $solicitud){
+        //$this->authorize('viewUserPublications', User::class);
+        $postulaciones = Postulacion::where('solicitud_id', $solicitud['id'])->get();
+        return response()->json(new PostulacionCollection($postulaciones), 200);
+    }
+
+    public function showSinAsignar(Solicitud $solicitud)
+    {
+        $solicitud = Solicitud::where('estado','=','Sin Asignar')->get();
+        return response()->json(new SolicitudCollection($solicitud), 200);
     }
 }
