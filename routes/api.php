@@ -32,6 +32,8 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
     //filtrar postulaciones por user  
     Route::get('/users/comments/{user}','App\Http\Controllers\UserController@showUserComments');
+    //Postulaciones estado espera
+    Route::get('/postulaciones/espera','App\Http\Controllers\PostulacionController@showEspera');
 
     //filtrar postulaciones x solicitud_id
     Route::get('/solicitudes/postulaciones/{solicitud}','App\Http\Controllers\SolicitudController@showPostulacionSolicitud');

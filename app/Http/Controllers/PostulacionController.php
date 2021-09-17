@@ -49,4 +49,10 @@ class PostulacionController extends Controller
         $postulacion->delete();
         return response()->json(null, 204);
     }
+
+    public function showEspera(Postulacion $postulacion)
+    {
+        $postulacion = Postulacion::where('estado','=','Espera')->get();
+        return response()->json(new PostulacionCollection($postulacion), 200);
+    }
 }
