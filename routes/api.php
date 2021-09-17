@@ -27,16 +27,21 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     //rutas para filtrar las solicitudes por usuario
     Route::get('/users/solicitudes/{user}','App\Http\Controllers\UserController@showUserSolicitud');
 
-    //filtrar postulaciones por user  showUserComments
+    //filtrar postulaciones por user  
     Route::get('/users/postulaciones/{user}','App\Http\Controllers\UserController@showUserPostulacion');
 
     //filtrar postulaciones por user  
     Route::get('/users/comments/{user}','App\Http\Controllers\UserController@showUserComments');
-    //Postulaciones estado espera
-    Route::get('/postulaciones/espera','App\Http\Controllers\PostulacionController@showEspera');
+    
+    //Postulaciones estado asignado
+    Route::get('/postulaciones/asignado','App\Http\Controllers\UserController@showPostulacionAsignado');
+
+    //Postulaciones estado terminadas
+    Route::get('/postulaciones/terminado','App\Http\Controllers\UserController@showPostulacionTerminado');
 
     //filtrar postulaciones x solicitud_id
     Route::get('/solicitudes/postulaciones/{solicitud}','App\Http\Controllers\SolicitudController@showPostulacionSolicitud');
+    Route::get('/solicitudes/postulaciones/asignada/{solicitud}','App\Http\Controllers\SolicitudController@showPostulacionAsig');
 
     //filtrar user por rol
     Route::get('user-tecnico', 'App\Http\Controllers\UserController@showRoleTecnic');
