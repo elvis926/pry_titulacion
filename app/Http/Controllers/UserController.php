@@ -126,7 +126,19 @@ class UserController extends Controller
 
     public function showUserPostulacion(User $user){
         //$this->authorize('viewUserPublications', User::class);
-        $postulaciones = Postulacion::where('tecnico_id', $user['id'])->get();
+        $postulaciones = Postulacion::where('tecnico_id', $user['id'])->where('estado','=','Espera')->get();
+        return response()->json(new PostulacionCollection($postulaciones), 200);
+    }
+
+    public function showPostulacionAsignado(User $user){
+        //$this->authorize('viewUserPublications', User::class);
+        $postulaciones = Postulacion::where('tecnico_id', $user['id'])->where('estado','=','Asignado')->get();
+        return response()->json(new PostulacionCollection($postulaciones), 200);
+    }
+
+    public function showPostulacionTerminado(User $user){
+        //$this->authorize('viewUserPublications', User::class);
+        $postulaciones = Postulacion::where('tecnico_id', $user['id'])->where('estado','=','Terminado')->get();
         return response()->json(new PostulacionCollection($postulaciones), 200);
     }
 
