@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bbbe0926df5666423a87ed237b1e2ee8",
+    "content-hash": "cd6db05b82f5d13c11210915d56ea977",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -121,6 +121,56 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "chrisnharvey/laravel-sql-require-primary-key",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chrisnharvey/laravel-sql-require-primary-key.git",
+                "reference": "3e5fda1894b772e3bb150617e48af3a1320ef195"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chrisnharvey/laravel-sql-require-primary-key/zipball/3e5fda1894b772e3bb150617e48af3a1320ef195",
+                "reference": "3e5fda1894b772e3bb150617e48af3a1320ef195",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "6.x-dev"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ChrisHarvey\\LaravelSqlRequirePrimaryKey\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ChrisHarvey\\LaravelSqlRequirePrimaryKey\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Harvey",
+                    "email": "chris@chrisnharvey.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/chrisnharvey/laravel-sql-require-primary-key/issues",
+                "source": "https://github.com/chrisnharvey/laravel-sql-require-primary-key/tree/master"
+            },
+            "time": "2021-03-16T10:20:08+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -8089,6 +8139,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "chrisnharvey/laravel-sql-require-primary-key": 0,
         "tymon/jwt-auth": 20
     },
     "prefer-stable": true,
