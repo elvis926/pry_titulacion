@@ -2,12 +2,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Solicitud;
+use App\Models\Postulacion;
+use App\Models\Comentario;
+use App\Http\Resources\Solicituds as SolicitudResource;
+use App\Http\Resources\SolicitudCollection;
+use App\Http\Resources\Postulacion as PostulacionResource;
+use App\Http\Resources\PostulacionCollection;
+use App\Http\Resources\Comments as ComentarioResource;
+use App\Http\Resources\CommentCollection;
+use App\Http\Resources\Users as UserResource;
+use App\Http\Resources\UserCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use App\Http\Resources\Users as UserResource;
 
 class UserController extends Controller
 {
@@ -106,5 +116,52 @@ class UserController extends Controller
             // something went wrong whilst attempting to encode the token
             return response()->json(["message" => "No se pudo cerrar la sesión."], 500);
         }
+    }
+
+    public function showUserSolicitud(User $user){
+        //$this->authorize('viewUserPublications', User::class);
+        $solicitudes = Solicitud::where('cliente_id', $user['id'])->get();
+        return response()->json(new SolicitudCollection($solicitudes), 200);
+    }
+
+    public function showUserPostulacion(User $user){
+        //$this->authorize('viewUserPublications', User::class);
+        $postulaciones = Postulacion::where('tecnico_id', $user['id'])->where('estado','=','Espera')->get();
+        return response()->json(new PostulacionCollection($postulaciones), 200);
+    }
+
+    public function showPostulacionAsignado(User $user){
+        //$this->authorize('viewUserPublications', User::class);
+        $postulaciones = Postulacion::where('tecnico_id', $user['id'])->where('estado','=','Asignado')->get();
+        return response()->json(new PostulacionCollection($postulaciones), 200);
+    }
+
+    public function showPostulacionTerminado(User $user){
+        //$this->authorize('viewUserPublications', User::class);
+        $postulaciones = Postulacion::where('tecnico_id', $user['id'])->where('estado','=','Terminado')->get();
+        return response()->json(new PostulacionCollection($postulaciones), 200);
+    }
+
+    public function showUserComments(User $user){
+        //$this->authorize('viewUserPublications', User::class);
+        $comentarios = Comentario::where('user_id', $user['id'])->get();
+        return response()->json(new CommentCollection($comentarios), 200);
+    }
+
+    public function show(User $user)
+    {
+        return response()->json(new UserResource($user),200);
+    }
+
+    public function showRoleTecnic(User $user)
+    {
+        $user = User::where('role','=','ROLE_TECNICO')->get();
+        return response()->json(new UserCollection($user), 200);
+    }
+
+    public function showRoleClient(User $user)
+    {
+        $user = User::where('role','=','ROLE_CLIENTE')->get();
+        return response()->json(new UserCollection($user), 200);
     }
 }

@@ -26,7 +26,7 @@ class TecnicoController extends Controller
     {
         //$this->authorize('create', Comentario::class);
         $request->validate([
-            'nombre'=>'required|string',
+            'name'=>'required|string',
             'email'=>'required|string',
             'telefono'=>'required|string',
             'direccion'=>'required|string',

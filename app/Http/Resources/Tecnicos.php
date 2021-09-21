@@ -21,7 +21,7 @@ class Tecnicos extends ResourceCollection
             'telefono' => $this->telefono,
             'direccion' => $this->direccion,
             'descripcion' => $this->descripcion,
-            'estado' => $this->estado,
+            'estudios' => $this->estado,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

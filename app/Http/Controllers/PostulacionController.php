@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Postulacion;
 use App\Models\User;
 use App\Models\Solicitud;
-use App\Http\Resources\Postulacions as PostulacionsResource;
+use App\Http\Resources\Postulacion as PostulacionResource;
 use App\Http\Resources\PostulacionCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -20,8 +20,8 @@ class PostulacionController extends Controller
     }
     public function show(Postulacion $postulacion)
     {
-       // $this->authorize('view', $postulacion);
-        return response()->json(new PostulacionsResource($postulacion),200);
+       
+        return response()->json(new PostulacionResource($postulacion),200);
     }
     public function store(Request $request)
     {
@@ -49,4 +49,6 @@ class PostulacionController extends Controller
         $postulacion->delete();
         return response()->json(null, 204);
     }
+
+    
 }
