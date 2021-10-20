@@ -63,7 +63,7 @@ class SolicitudController extends Controller
 
     public function showPostulacionAsig(Solicitud $solicitud){
         //$this->authorize('viewUserPublications', User::class);
-        $postulaciones = Postulacion::where('solicitud_id', $solicitud['id'])->where('estado','=','Asignada'||'Terminada')->get();
+        $postulaciones = Postulacion::where('solicitud_id', $solicitud['id'])->where('estado','=','Asignada'or'Terminada')->get();
         return response()->json(new PostulacionCollection($postulaciones), 200);
     }
 
