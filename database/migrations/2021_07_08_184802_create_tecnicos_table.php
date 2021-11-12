@@ -21,6 +21,7 @@ class CreateTecnicosTable extends Migration
             $table->string('direccion');
             $table->string('descripcion');
             $table->enum('estudios',['Ingeniero en Sitemas','Tecnologo en Sistemas','Egresado en sistemas']);
+            $table->enum('estado',['Sin Registrar','Registrado']);
 
 
             

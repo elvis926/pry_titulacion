@@ -80,7 +80,9 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::delete('calificaciones/{calificacion}', 'App\Http\Controllers\SolicitudController@delete');
 
     //rutas datos del tecnico 
-    
+    Route::get('tecnicos/{tecnico}', 'App\Http\Controllers\TecnicoController@show');
+    Route::get('registrado/{tecnico}','App\Http\Controllers\TecnicoController@update');
     Route::get('infotecnicos','App\Http\Controllers\TecnicoController@index');
+    Route::get('tecnico-sin-registrar','App\Http\Controllers\TecnicoController@showTecnicoSinRegister');
 
 });

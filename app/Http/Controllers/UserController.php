@@ -155,13 +155,13 @@ class UserController extends Controller
 
     public function showRoleTecnic(User $user)
     {
-        $user = User::where('role','=','ROLE_TECNICO')->get();
+        $user = User::where('role','=','TECNICO')->get();
         return response()->json(new UserCollection($user), 200);
     }
 
     public function showRoleClient(User $user)
     {
-        $user = User::where('role','=','ROLE_CLIENTE')->get();
+        $user = User::where('role','=','CLIENTE')->get();
         return response()->json(new UserCollection($user), 200);
     }
 }
